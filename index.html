@@ -1,0 +1,381 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Academic Cover — Custom Cover Pages for Every Submission</title>
+  <meta name="description" content="Free online tool to design professional academic cover pages for assignments, practical files, project reports, seminars, internships, and theses." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="assets/styles.css" />
+</head>
+<body>
+  <!-- Header -->
+  <header class="app-header">
+    <div class="header-inner">
+      <a href="#" class="logo">
+        <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z" />
+          <polyline points="14 2 14 8 20 8" />
+          <line x1="9" y1="13" x2="15" y2="13" />
+          <line x1="9" y1="17" x2="15" y2="17" />
+        </svg>
+        <span>Academic Cover</span>
+      </a>
+      <nav class="header-nav">
+        <a href="#templates">Templates</a>
+        <a href="#how">How it works</a>
+        <button class="btn-ghost contact-trigger" data-open-contact>
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/>
+          </svg>
+          Contact
+        </button>
+      </nav>
+    </div>
+  </header>
+
+  <!-- Hero / Intro -->
+  <section class="hero">
+    <div class="hero-inner">
+      <div class="hero-text">
+        <span class="eyebrow">Customizer</span>
+        <h1>Your cover, your details, your mark.</h1>
+        <p>Pick a template, edit every field, choose a visual theme, and add an official logo from your device or an institution website. Print or download — ready in minutes.</p>
+        <div class="hero-cta">
+          <a href="#templates" class="btn-primary">Get started</a>
+          <button class="btn-secondary" data-open-contact>Request a template</button>
+        </div>
+      </div>
+      <div class="hero-stats">
+        <div class="stat">
+          <div class="stat-num">6</div>
+          <div class="stat-label">Templates</div>
+        </div>
+        <div class="stat">
+          <div class="stat-num">3</div>
+          <div class="stat-label">Themes</div>
+        </div>
+        <div class="stat">
+          <div class="stat-num">∞</div>
+          <div class="stat-label">Customizations</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Template Selector Strip -->
+  <section class="templates-strip" id="templates">
+    <div class="container">
+      <div class="section-head">
+        <h2>Choose a template</h2>
+        <p>Six professionally designed cover layouts. Each one adapts to your course details and theme.</p>
+      </div>
+      <div class="template-grid" id="templateGrid">
+        <!-- Populated by JS -->
+      </div>
+    </div>
+  </section>
+
+  <!-- Customizer -->
+  <section class="customizer" id="customizer">
+    <div class="customizer-inner">
+      <!-- Left: Editor -->
+      <aside class="editor">
+        <div class="editor-section">
+          <div class="step-num">01</div>
+          <div class="step-body">
+            <h3>Content</h3>
+            <p class="step-help">Edit the details shown on your cover. Fields update the preview live.</p>
+          </div>
+          <button class="btn-link" id="resetBtn">Reset</button>
+        </div>
+        <div class="fields-grid" id="fieldsGrid">
+          <!-- Populated by JS -->
+        </div>
+
+        <div class="editor-section">
+          <div class="step-num">02</div>
+          <div class="step-body">
+            <h3>Style</h3>
+            <p class="step-help">Choose a visual theme.</p>
+          </div>
+        </div>
+        <div class="theme-grid" id="themeGrid">
+          <!-- Populated by JS -->
+        </div>
+
+        <div class="editor-section">
+          <div class="step-num">03</div>
+          <div class="step-body">
+            <h3>Branding</h3>
+            <p class="step-help">Add an official logo from your device or paste a direct image URL.</p>
+          </div>
+        </div>
+        <div class="branding">
+          <div class="logo-tabs">
+            <button class="logo-tab active" data-tab="upload">Upload</button>
+            <button class="logo-tab" data-tab="url">Use URL</button>
+          </div>
+          <div class="logo-panel active" data-panel="upload">
+            <label class="file-drop" id="fileDrop">
+              <input type="file" id="logoFile" accept="image/*" hidden />
+              <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4" />
+                <polyline points="17 8 12 3 7 8" />
+                <line x1="12" y1="3" x2="12" y2="15" />
+              </svg>
+              <span>Choose image</span>
+              <small>PNG, JPG, SVG up to 2MB</small>
+            </label>
+            <div class="logo-preview" id="logoPreview" hidden>
+              <img id="logoImg" alt="Logo" />
+              <button class="logo-remove" id="logoRemove" aria-label="Remove logo">×</button>
+            </div>
+          </div>
+          <div class="logo-panel" data-panel="url">
+            <div class="input-group">
+              <input type="url" id="logoUrl" placeholder="https://example.edu/logo.png" />
+              <button class="btn-primary btn-sm" id="logoUrlApply">Apply</button>
+            </div>
+            <div class="url-suggestions">
+              <span>Official sources:</span>
+              <a href="https://bnmu.ac.in/" target="_blank" rel="noopener">University ↗</a>
+              <a href="https://mltcollegebed.org/" target="_blank" rel="noopener">College ↗</a>
+            </div>
+          </div>
+        </div>
+      </aside>
+
+      <!-- Right: Live Preview -->
+      <main class="preview-area">
+        <div class="preview-toolbar">
+          <div class="preview-tabs">
+            <span class="tab active" data-tab="preview">Live preview</span>
+            <span class="tab-meta" id="previewMeta">Assignment · Navy & Gold</span>
+          </div>
+          <div class="preview-actions">
+            <button class="btn-secondary btn-sm" id="printBtn">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <polyline points="6 9 6 2 18 2 18 9" />
+                <path d="M6 18H4a2 2 0 0 1-2-2v-5a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v5a2 2 0 0 1-2 2h-2" />
+                <rect x="6" y="14" width="12" height="8" />
+              </svg>
+              Print
+            </button>
+            <button class="btn-primary btn-sm" id="downloadBtn">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4" />
+                <polyline points="7 10 12 15 17 10" />
+                <line x1="12" y1="15" x2="12" y2="3" />
+              </svg>
+              Download PDF
+            </button>
+          </div>
+        </div>
+
+        <div class="preview-stage" id="previewStage">
+          <div class="page" id="coverPage">
+            <!-- Cover content rendered by JS -->
+          </div>
+        </div>
+
+        <div class="preview-foot">
+          <div class="foot-tip">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <circle cx="12" cy="12" r="10" />
+              <line x1="12" y1="16" x2="12" y2="12" />
+              <line x1="12" y1="8" x2="12.01" y2="8" />
+            </svg>
+            Tip: Use <kbd>Cmd</kbd> + <kbd>P</kbd> to print. For best results, set scale to 100% and margins to "None".
+          </div>
+        </div>
+      </main>
+    </div>
+  </section>
+
+  <!-- How it works -->
+  <section class="how-it-works" id="how">
+    <div class="container">
+      <div class="section-head">
+        <h2>How it works</h2>
+        <p>Three steps. No sign-up, no install.</p>
+      </div>
+      <div class="how-grid">
+        <div class="how-card">
+          <div class="how-num">1</div>
+          <h3>Pick a template</h3>
+          <p>Choose from Assignment, Practical File, Project Report, Seminar, Internship, or Thesis covers.</p>
+        </div>
+        <div class="how-card">
+          <div class="how-num">2</div>
+          <h3>Edit & style</h3>
+          <p>Fill in your details, pick a theme, and add your institution's logo.</p>
+        </div>
+        <div class="how-card">
+          <div class="how-num">3</div>
+          <h3>Print or download</h3>
+          <p>Save as PDF or print directly. Your cover is ready to attach to your submission.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA strip -->
+  <section class="cta-strip">
+    <div class="container cta-inner">
+      <div>
+        <h3>Need a custom template?</h3>
+        <p>Tell us your course or department — we'll add it to the library.</p>
+      </div>
+      <button class="btn-primary" data-open-contact>Request a template</button>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="app-footer">
+    <div class="container footer-inner">
+      <div class="footer-brand">
+        <span class="logo">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z" />
+            <polyline points="14 2 14 8 20 8" />
+            <line x1="9" y1="13" x2="15" y2="13" />
+            <line x1="9" y1="17" x2="15" y2="17" />
+          </svg>
+          <span>Academic Cover</span>
+        </span>
+        <p>Free cover page generator for students.</p>
+      </div>
+      <div class="footer-cols">
+        <div class="footer-col">
+          <h4>Product</h4>
+          <a href="#templates">Templates</a>
+          <a href="#customizer">Customizer</a>
+        </div>
+        <div class="footer-col">
+          <h4>Support</h4>
+          <a href="#" data-open-contact>Contact</a>
+          <a href="#" data-open-contact>Request feature</a>
+        </div>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <div class="container">
+        <small>© <span id="year">2026</span> Academic Cover · Built for students</small>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Contact Modal -->
+  <div class="modal" id="contactModal" aria-hidden="true">
+    <div class="modal-backdrop" data-close-contact></div>
+    <div class="modal-panel" role="dialog" aria-labelledby="contactTitle">
+      <button class="modal-close" data-close-contact aria-label="Close">×</button>
+      <div class="modal-head">
+        <h2 id="contactTitle">Get in touch</h2>
+        <p>Drop your details — we'll get back to you and may add your request to the template library.</p>
+      </div>
+      <form class="contact-form" id="contactForm">
+        <div class="form-row">
+          <div class="form-field">
+            <label for="cf-name">Full name *</label>
+            <input type="text" id="cf-name" name="name" required placeholder="Amit Kumar" />
+          </div>
+          <div class="form-field">
+            <label for="cf-email">Email *</label>
+            <input type="email" id="cf-email" name="email" required placeholder="you@college.edu" />
+          </div>
+        </div>
+        <div class="form-row">
+          <div class="form-field">
+            <label for="cf-phone">Phone / WhatsApp</label>
+            <input type="tel" id="cf-phone" name="phone" placeholder="+91 98765 43210" />
+          </div>
+          <div class="form-field">
+            <label for="cf-college">College / University</label>
+            <input type="text" id="cf-college" name="college" placeholder="M. L. T. College, Saharsa" />
+          </div>
+        </div>
+        <div class="form-field">
+          <label for="cf-message">Message</label>
+          <textarea id="cf-message" name="message" rows="3" placeholder="Tell us what you need…"></textarea>
+        </div>
+        <div class="form-foot">
+          <small>Template used: <span id="cf-template">Assignment Cover</span></small>
+          <button type="submit" class="btn-primary" id="cf-submit">Send message</button>
+        </div>
+        <div class="form-success" id="cf-success" hidden>
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+            <polyline points="20 6 9 17 4 12" />
+          </svg>
+          <span>Thanks! We'll be in touch soon.</span>
+        </div>
+        <div class="form-error" id="cf-error" hidden></div>
+      </form>
+    </div>
+  </div>
+
+  <!-- Toast -->
+  <div class="toast" id="toast" role="status" aria-live="polite"></div>
+
+  <!-- AI Assistant -->
+  <button class="ai-fab" id="aiFab" aria-label="Open AI assistant">
+    <span class="pulse"></span>
+    <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+      <path d="M12 8V4H8" />
+      <rect width="16" height="12" x="4" y="8" rx="2" />
+      <path d="M2 14h2" />
+      <path d="M20 14h2" />
+      <path d="M15 13v2" />
+      <path d="M9 13v2" />
+    </svg>
+  </button>
+
+  <div class="ai-panel" id="aiPanel">
+    <div class="ai-header">
+      <div class="ai-avatar">AI</div>
+      <div class="ai-info">
+        <div class="ai-name">
+          Cover Assistant
+        </div>
+        <div class="ai-status">Online</div>
+      </div>
+      <button class="ai-close" id="aiClose" aria-label="Close">×</button>
+    </div>
+
+    <div class="ai-messages" id="aiMessages">
+      <div class="ai-setup" id="aiSetup">
+        <h4>Unlock full AI assistant</h4>
+        <p>Optional: Add your OpenAI API key for personalized help. Stored only in your browser.</p>
+        <input type="password" id="aiApiKey" placeholder="sk-..." />
+        <div class="ai-setup-actions">
+          <button id="aiSetupSkip">Skip for now</button>
+          <button id="aiSetupSave" class="primary">Save & start</button>
+        </div>
+        <div class="small-note">
+          Without a key, you can still get template tips and ideas.<br />
+          Get a key at <a href="https://platform.openai.com/api-keys" target="_blank" rel="noopener">platform.openai.com</a>.
+        </div>
+      </div>
+    </div>
+
+    <div class="ai-suggestions" id="aiSuggestions"></div>
+
+    <div class="ai-input">
+      <input type="text" id="aiInput" placeholder="Ask anything…" />
+      <button id="aiSend" aria-label="Send">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+          <line x1="22" y1="2" x2="11" y2="13" />
+          <polygon points="22 2 15 22 11 13 2 9 22 2" />
+        </svg>
+      </button>
+    </div>
+  </div>
+
+  <script src="assets/templates.js"></script>
+  <script src="assets/render.js"></script>
+  <script src="assets/app.js"></script>
+</body>
+</html>

@@ -1,0 +1,17 @@
+{
+  "name": "academic-cover",
+  "version": "1.0.0",
+  "description": "Free online tool to design professional academic cover pages",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js",
+    "build": "rm -rf dist && mkdir -p dist && cp -r public/* dist/ && echo 'Static build complete: dist/'",
+    "dev": "node server.js"
+  },
+  "dependencies": {
+    "express": "^4.22.2"
+  },
+  "engines": {
+    "node": ">=18"
+  }
+}
